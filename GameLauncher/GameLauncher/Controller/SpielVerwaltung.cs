@@ -25,6 +25,8 @@ namespace GameLauncher.Controller
         public SpielVerwaltung()
         {
             SpielListe = new List<Spiele>();
+
+            DatenLaden();
         }
 
         /// <summary>
@@ -53,6 +55,10 @@ namespace GameLauncher.Controller
                 throw new ArgumentException("Spiel existiert bereits");
             }
 
+            // Pfad überprüfen
+            Utils.Utils.PfadCheck(pfad);
+
+            // Spielmodel befüllen
             Spiele spiel = new Spiele();
             spiel.Titel = titel;
             spiel.InstallationsPfad = pfad;
@@ -62,12 +68,14 @@ namespace GameLauncher.Controller
             spiel.InstallationsDatum = DateTime.Now;
             spiel.ZuletztGespielt = null;
 
+            // Spiel dem Datenmodell hinzufügen
             SpieleEntities spieleEntities = new SpieleEntities();
             spieleEntities.Spiele.Add(spiel);
 
-            SpielListe.Add(spiel);
-
             spieleEntities.SaveChanges();
+
+            // Spiel zur Liste hinzufügen
+            SpielListe.Add(spiel);
         }
 
         /// <summary>
@@ -87,7 +95,7 @@ namespace GameLauncher.Controller
             }
 
             // Spiel aus der Datenbank löschen
-            spieleEntities.Spiele.Remove(spiel);
+            spieleEntities.Spiele.Remove(spieleEntities.Spiele.FirstOrDefault(s => s.Titel == titel));
             spieleEntities.SaveChanges();
         }
 

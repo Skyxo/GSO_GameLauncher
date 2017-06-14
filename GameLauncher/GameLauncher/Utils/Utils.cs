@@ -21,10 +21,10 @@ namespace GameLauncher.Utils
                 throw new ArgumentException("Pfad des Spiels nicht gefunden");
             }
 
-            if (!pfad.EndsWith(".exe") || !pfad.EndsWith(".msi"))
-            {
-                throw new ArgumentException("Angegebener Pfad ungültig");
-            }
+            //if (!pfad.EndsWith(".exe") || !pfad.EndsWith(".msi"))
+            //{
+            //    throw new ArgumentException("Angegebener Pfad ungültig");
+            //}
         }
 
         public static DateTime InstallationsDatum(string pfad)
