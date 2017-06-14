@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>657</x>
+      <y>189</y>
+      <w>189</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Model.Spiel
+--
+_+ Titel : string_
+_+ Bildpfad : string_
+_+ InstallationsDatum : DateTime_
+_+ ZuletztGespielt : DateTime_
+_+ InstallationsPfad : string_
+_+ Kategorie : string_
+_+ Publisher : string_
+_+ USK : int_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>405</y>
+      <w>549</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>Controller.SpielVerwaltung
+--
+_- SpielListe : List&lt;Model.Spiel&gt;_
+--
++ Verwaltung()
+--
++ SpielHinzufügen(titel : string, pfad : string, kategorie : string, publisher : string,  usk : int) : void
++ SpielLöschen(titel : string) : void
++ SpielStarten(titel : string) : void
+--
+- DatenLaden() : void
+- DatenSpeichern() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>747</x>
+      <y>324</y>
+      <w>45</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>189</y>
+      <w>288</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>View.GameLauncher
+--
+_- SpielVerwaltung : Controller.SpielVerwaltung
+--
++ GameLauncher()
+--
+/+ OnPaint(e : PaintEventArgs) : void/
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>342</y>
+      <w>27</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
