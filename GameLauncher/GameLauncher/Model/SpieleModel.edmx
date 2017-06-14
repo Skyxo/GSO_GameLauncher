@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Spiele">
+          <Key>
+            <PropertyRef Name="SpielID" />
+          </Key>
+          <Property Name="SpielID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InstallationsDatum" Type="datetime" Nullable="false" />
+          <Property Name="ZuletztGespielt" Type="datetime" />
+          <Property Name="InstallationsPfad" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Kategorie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Publisher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Spiele" EntityType="Self.Spiele" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Spiele">
+          <Key>
+            <PropertyRef Name="SpielID" />
+          </Key>
+          <Property Name="SpielID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstallationsDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ZuletztGespielt" Type="DateTime" Precision="3" />
+          <Property Name="InstallationsPfad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Kategorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USK" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SpieleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Spiele" EntityType="Self.Spiele" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SpieleEntities">
+          <EntitySetMapping Name="Spiele">
+            <EntityTypeMapping TypeName="Model.Spiele">
+              <MappingFragment StoreEntitySet="Spiele">
+                <ScalarProperty Name="SpielID" ColumnName="SpielID" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="InstallationsDatum" ColumnName="InstallationsDatum" />
+                <ScalarProperty Name="ZuletztGespielt" ColumnName="ZuletztGespielt" />
+                <ScalarProperty Name="InstallationsPfad" ColumnName="InstallationsPfad" />
+                <ScalarProperty Name="Kategorie" ColumnName="Kategorie" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="USK" ColumnName="USK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

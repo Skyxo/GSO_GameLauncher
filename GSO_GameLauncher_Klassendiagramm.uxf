@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>657</x>
-      <y>189</y>
+      <x>360</x>
+      <y>162</y>
       <w>189</w>
       <h>144</h>
     </coordinates>
@@ -24,8 +24,8 @@ _+ USK : int_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>405</y>
+      <x>0</x>
+      <y>378</y>
       <w>549</w>
       <h>162</h>
     </coordinates>
@@ -40,15 +40,14 @@ _- SpielListe : List&lt;Model.Spiel&gt;_
 + SpielFinden(titel : string) : bool
 + SpielStarten(titel : string) : void
 --
-- DatenLaden() : void
-- DatenSpeichern() : void</panel_attributes>
+- DatenLaden() : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>747</x>
-      <y>324</y>
+      <x>450</x>
+      <y>297</y>
       <w>45</w>
       <h>99</h>
     </coordinates>
@@ -59,8 +58,8 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>189</y>
+      <x>0</x>
+      <y>153</y>
       <w>288</w>
       <h>162</h>
     </coordinates>
@@ -77,13 +76,13 @@ _- SpielVerwaltung : Controller.SpielVerwaltung_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>342</y>
+      <x>135</x>
+      <y>306</y>
       <w>27</w>
-      <h>81</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

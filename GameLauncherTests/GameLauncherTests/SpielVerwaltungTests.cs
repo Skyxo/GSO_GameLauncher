@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GameLauncher.Controller;
+using GameLauncher.Model;
 
 namespace GameLauncherTests
 {
@@ -8,19 +10,26 @@ namespace GameLauncherTests
     {
 
         [TestMethod]
+        public void EntityFramework_Test()
+        {
+            SpielVerwaltung verwaltung = new SpielVerwaltung();
+
+        }
+
+        [TestMethod]
         public void SpielHinzufügen_simpel_Test()
         {
             SpielVerwaltung verwaltung = new SpielVerwaltung();
 
-            string titel = "";
-            string pfad = "";
-            string kategorie = "";
-            string publisher = "";
+            string titel = "Editor";
+            string pfad = "111";
+            string kategorie = "3123";
+            string publisher = "Ich";
             int usk = 18;
 
             verwaltung.SpielHinzufügen(titel, pfad, kategorie, publisher, usk);
 
-            Assert.IsTrue(verwaltung.SpielListe.FirstOrDefault(s => s.Titel == titel));
+            Assert.IsNotNull(verwaltung.SpielListe.Find(x => x.Titel == titel));
         }
 
         [TestMethod]
@@ -58,11 +67,11 @@ namespace GameLauncherTests
         {
             SpielVerwaltung verwaltung = new SpielVerwaltung();
 
-            string titel = "";
+            string titel = "Editor";
 
-            Spiel spiel = verwaltung.SpielFinden(titel);
+            Spiele spiel = verwaltung.SpielFinden(titel);
 
-            Assert.IsTrue(result);
+            Assert.IsNotNull(spiel);
         }
 
         [TestMethod]
@@ -73,7 +82,7 @@ namespace GameLauncherTests
 
             string titel = "";
 
-            Spiel spiel = verwaltung.SpielFinden(titel);
+            Spiele spiel = verwaltung.SpielFinden(titel);
         }
 
         [TestMethod]
@@ -83,14 +92,14 @@ namespace GameLauncherTests
 
             string titel = "";
 
-            Spiel spiel = new Spiel();
+            Spiele spiel = new Spiele();
             spiel.Titel = titel;
 
             verwaltung.SpielListe.Add(spiel);
 
             verwaltung.SpielLöschen(titel);
 
-            Assert.IsNull(verwaltung.SpielListe.FirstOrDefault(s => s.Titel == titel));
+            Assert.IsNull(verwaltung.SpielListe.Find(s => s.Titel == titel));
         }
 
         [TestMethod]
@@ -103,29 +112,9 @@ namespace GameLauncherTests
 
             verwaltung.SpielLöschen(titel);
 
-            Assert.IsNull(verwaltung.SpielListe.FirstOrDefault(s => s.Titel == titel));
+            Assert.IsNull(verwaltung.SpielListe.Find(s => s.Titel == titel));
         }
 
-        [TestMethod]
-        public void SpielDetails_Test()
-        {
-            SpielVerwaltung verwaltung = new SpielVerwaltung();
-
-            string titel = "";
-
-            verwaltung.SpielDetails(titel);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Spiel nicht gefunden")]
-        public void SpielDetails_NotFound_Test()
-        {
-            SpielVerwaltung verwaltung = new SpielVerwaltung();
-
-            string titel = "";
-
-            verwaltung.SpielDetails(titel);
-        }
-
+        
     }
 }
