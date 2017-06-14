@@ -37,6 +37,7 @@ _- SpielListe : List&lt;Model.Spiel&gt;_
 --
 + SpielHinzufügen(titel : string, pfad : string, kategorie : string, publisher : string,  usk : int) : void
 + SpielLöschen(titel : string) : void
++ SpielFinden(titel : string) : bool
 + SpielStarten(titel : string) : void
 --
 - DatenLaden() : void
@@ -65,7 +66,7 @@ m1=0..n</panel_attributes>
     </coordinates>
     <panel_attributes>View.GameLauncher
 --
-_- SpielVerwaltung : Controller.SpielVerwaltung
+_- SpielVerwaltung : Controller.SpielVerwaltung_
 --
 + GameLauncher()
 --
