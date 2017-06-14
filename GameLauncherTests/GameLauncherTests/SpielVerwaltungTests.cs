@@ -21,7 +21,7 @@ namespace GameLauncherTests
         {
             SpielVerwaltung verwaltung = new SpielVerwaltung();
 
-            string titel = "Mails";
+            string titel = "und so weiter ...";
             string pfad = "C:/Program Files/Windows Mail/wab.exe";
             string kategorie = "MailProgramm";
             string publisher = "Ich";

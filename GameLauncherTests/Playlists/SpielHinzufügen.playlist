@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="GameLauncherTests.SpielVerwaltungTests.DoppeltesSpielHinzufügen_Test" /><Add Test="GameLauncherTests.SpielVerwaltungTests.SpielHinzufügen_BadPath_Test" /><Add Test="GameLauncherTests.SpielVerwaltungTests.SpielHinzufügen_simpel_Test" /></Playlist>
