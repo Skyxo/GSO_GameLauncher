@@ -17,6 +17,25 @@ namespace GameLauncherTests
         }
 
         [TestMethod]
+        public void SpielHinzufügen_mehrere_Test()
+        {
+            SpielVerwaltung verwaltung = new SpielVerwaltung();
+
+            for (int i = 0; i < 10; i++)
+            {
+                string titel = "Testprogramm " + i;
+                string pfad = "C:/Program Files/Windows Mail/wab.exe";
+                string kategorie = "MailProgramm";
+                string publisher = "Ich";
+                int usk = 18;
+
+                verwaltung.SpielHinzufügen(titel, pfad, kategorie, publisher, usk);
+
+                Assert.IsNotNull(verwaltung.SpielListe.Find(x => x.Titel == titel));
+            }
+        }
+
+        [TestMethod]
         public void SpielHinzufügen_simpel_Test()
         {
             SpielVerwaltung verwaltung = new SpielVerwaltung();

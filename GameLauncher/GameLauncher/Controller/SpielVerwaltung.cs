@@ -1,6 +1,7 @@
 ﻿using GameLauncher.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,8 +85,6 @@ namespace GameLauncher.Controller
         /// <param name="titel"></param>
         public void SpielLöschen(string titel)
         {
-            SpieleEntities spieleEntities = new SpieleEntities();
-
             // Spiel in der Datenbank finden
             Spiele spiel = SpielFinden(titel);
 
@@ -95,6 +94,7 @@ namespace GameLauncher.Controller
             }
 
             // Spiel aus der Datenbank löschen
+            SpieleEntities spieleEntities = new SpieleEntities();
             spieleEntities.Spiele.Remove(spieleEntities.Spiele.FirstOrDefault(s => s.Titel == titel));
             spieleEntities.SaveChanges();
         }
@@ -128,7 +128,18 @@ namespace GameLauncher.Controller
         /// <param name="titel"></param>
         public void SpielStarten(string titel)
         {
+            Spiele spiel = SpielFinden(titel);
 
+            if (spiel == null)
+            {
+                throw new ArgumentException("Spiel nicht gefunden");
+            }
+
+            SpieleEntities spieleEntities = new SpieleEntities();
+            Spiele s = spieleEntities.Spiele.Find(spiel.SpielID);
+            s.ZuletztGespielt = DateTime.Now;
+
+            Process.Start(spiel.InstallationsPfad);
         }
 
     }

@@ -22,15 +22,23 @@ namespace GameLauncher.View
             set;
         }
 
+        private List<DrawedButton> DrawedButtons
+        {
+            get;
+            set;
+        }
+
         public GameLauncher()
         {
             InitializeComponent();
 
             this.ResizeRedraw = true;
-            this.AutoScrollMinSize = new Size(0, 3000);
 
             SpielVerwaltung = new SpielVerwaltung();
+            DrawedButtons = new List<DrawedButton>();
         }
+
+        Graphics g = null;
 
         /// <summary>
         /// Fenster malen
@@ -43,7 +51,15 @@ namespace GameLauncher.View
             base.OnPaint(e);
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
 
-            Graphics g = e.Graphics;
+            g = e.Graphics;
+
+            PaintThis();
+        }
+
+        private void PaintThis()
+        {
+            DrawedButtons.Clear();
+            g.Clear(SystemColors.Control);
 
             float windowHeight = this.Size.Height;
             float windowWidth = this.Size.Width;
@@ -51,7 +67,7 @@ namespace GameLauncher.View
             // Title text
             string titleText = "Deine Spiele";
 
-            SizeF titleTextSize = MeasureString(e, titleText, 24);
+            SizeF titleTextSize = MeasureString(g, titleText, 24);
             float titleTextX = ZentrierteBreiteKoodrinaten(windowWidth, titleTextSize.Width);
 
             Rectangle titleTextRectangle = new Rectangle(FloatToInt(titleTextX), 30, FloatToInt(titleTextSize.Width), FloatToInt(titleTextSize.Height));
@@ -60,7 +76,6 @@ namespace GameLauncher.View
             Font titleTextFont = new Font("Century Gothic", 24);
 
             g.DrawString(titleText, titleTextFont, titleTextBrush, titleTextX, 30F);
-
 
             // Title line
             float titleLineX = ZentrierteBreiteKoodrinaten(windowWidth, titleTextSize.Width + 50);
@@ -93,22 +108,39 @@ namespace GameLauncher.View
                 // Titel des Spiels malen
                 string spielTitel = spiel.Titel;
 
-                SizeF spielTitelSize = MeasureString(e, titleText, 16);
+                SizeF spielTitelSize = MeasureString(g, titleText, 16);
 
                 // rand + reihe * titelhöhe und abstand + abstand
                 int titelX = randLinks + spalte * 300 + abstand;
                 int titelY = randOben + reihe * (FloatToInt(spielTitelSize.Height) + abstand);
 
-                Rectangle spielTitelRectangle = new Rectangle(titelX, titelY, FloatToInt(spielTitelSize.Width), FloatToInt(spielTitelSize.Height));
+                int rectX = titelX - 10;
+                int rectY = titelY - 10;
+                int rectWidth = 260 + 10 + 10;
+                int rectHeight = FloatToInt(spielTitelSize.Height) + 10 + 10;
+
+                Rectangle spielTitelRectangle = new Rectangle(rectX, rectY, rectWidth, rectHeight);
 
                 Brush spielTitelBrush = new SolidBrush(Color.Gray);
                 Font spielTitelFont = new Font("Century Gothic", 16);
 
                 g.DrawString(spielTitel, spielTitelFont, spielTitelBrush, titelX, titelY);
+                g.DrawRectangle(new Pen(Color.Gray, 1.4F), spielTitelRectangle);
+
+                DrawedButton drawedButton = new DrawedButton();
+                drawedButton.X = rectX;
+                drawedButton.Y = rectY;
+                drawedButton.Width = rectWidth;
+                drawedButton.Height = rectHeight;
+                drawedButton.Spiel = spiel;
+
+                DrawedButtons.Add(drawedButton);
 
                 // Spalte hochzählen
                 spalte++;
             }
+
+            this.AutoScrollMinSize = new Size(0, randOben + reihe * (40 + abstand));
         }
 
         private int FloatToInt(float f)
@@ -133,14 +165,87 @@ namespace GameLauncher.View
         /// <param name="e">PaintEventArgs aus OnPaint</param>
         /// <param name="text">Text</param>
         /// <returns>Größe des Textes</returns>
-        private SizeF MeasureString(PaintEventArgs e, string text, int fontSize)
+        private SizeF MeasureString(Graphics g, string text, int fontSize)
         {
             Font stringFont = new Font("Century Gothic", fontSize);
 
-            SizeF stringSize = e.Graphics.MeasureString(text, stringFont);
+            SizeF stringSize = g.MeasureString(text, stringFont);
 
             return stringSize;
         }
 
+        private void GameLauncher_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Starten eines Spiels durch anklicken
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameLauncher_MouseUp(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = e.Y;
+
+            foreach (DrawedButton button in DrawedButtons)
+            {
+                if (x >= button.X &&
+                    y >= button.Y &&
+                    x <= button.Width + button.X &&
+                    y <= button.Height + button.Y)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    SpielVerwaltung.SpielStarten(button.Spiel.Titel);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Hover-Effekt beim überfliegen von gezeichneten Schaltflächen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameLauncher_MouseMove(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = e.Y;
+
+            foreach (DrawedButton button in DrawedButtons)
+            {
+                if (x >= button.X &&
+                    y >= button.Y &&
+                    x <= button.Width + button.X &&
+                    y <= button.Height + button.Y)
+                {
+                    Cursor.Current = Cursors.Hand;
+                }
+                else
+                {
+                    if (Cursor.Current == Cursors.Hand)
+                    {
+                        Cursor.Current = Cursors.Default;
+                    }
+                }
+            }
+        }
+
+        private void neuesSpielButton_Click(object sender, EventArgs e)
+        {
+            NeuesSpielView neuesSpielView = new NeuesSpielView();
+            DialogResult result = neuesSpielView.ShowDialog(this);
+
+            if (result == DialogResult.Cancel)
+            {
+                neuesSpielView.Close();
+            }
+            else if (result == DialogResult.OK)
+            {
+                PaintThis();
+                neuesSpielView.Close();
+            }
+        }
     }
 }
