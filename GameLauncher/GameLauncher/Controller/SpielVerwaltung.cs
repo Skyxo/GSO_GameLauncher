@@ -114,6 +114,8 @@ namespace GameLauncher.Controller
             SpieleEntities spieleEntities = new SpieleEntities();
             spieleEntities.Spiele.Remove(spieleEntities.Spiele.FirstOrDefault(s => s.Titel == titel));
             spieleEntities.SaveChanges();
+
+            SpielListe.Remove(SpielListe.SingleOrDefault(x => x.Titel == spiel.Titel));
         }
 
         /// <summary>

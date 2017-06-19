@@ -42,6 +42,8 @@
             this.zuletztGespieltLabel = new System.Windows.Forms.Label();
             this.installationspfadLabel = new System.Windows.Forms.Label();
             this.uskLabel = new System.Windows.Forms.Label();
+            this.spielLöschenButton = new System.Windows.Forms.Button();
+            this.spielStartenButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // spieldetailsTextLabel
@@ -170,11 +172,34 @@
             this.uskLabel.TabIndex = 13;
             this.uskLabel.Text = "label1";
             // 
+            // spielLöschenButton
+            // 
+            this.spielLöschenButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.spielLöschenButton.Location = new System.Drawing.Point(15, 226);
+            this.spielLöschenButton.Name = "spielLöschenButton";
+            this.spielLöschenButton.Size = new System.Drawing.Size(257, 23);
+            this.spielLöschenButton.TabIndex = 14;
+            this.spielLöschenButton.Text = "Spiel löschen";
+            this.spielLöschenButton.UseVisualStyleBackColor = true;
+            this.spielLöschenButton.Click += new System.EventHandler(this.spielLöschenButton_Click);
+            // 
+            // spielStartenButton
+            // 
+            this.spielStartenButton.Location = new System.Drawing.Point(13, 197);
+            this.spielStartenButton.Name = "spielStartenButton";
+            this.spielStartenButton.Size = new System.Drawing.Size(259, 23);
+            this.spielStartenButton.TabIndex = 15;
+            this.spielStartenButton.Text = "Spiel starten";
+            this.spielStartenButton.UseVisualStyleBackColor = true;
+            this.spielStartenButton.Click += new System.EventHandler(this.spielStartenButton_Click);
+            // 
             // SpielDetailsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.spielStartenButton);
+            this.Controls.Add(this.spielLöschenButton);
             this.Controls.Add(this.uskLabel);
             this.Controls.Add(this.installationspfadLabel);
             this.Controls.Add(this.zuletztGespieltLabel);
@@ -212,5 +237,7 @@
         private System.Windows.Forms.Label zuletztGespieltLabel;
         private System.Windows.Forms.Label installationspfadLabel;
         private System.Windows.Forms.Label uskLabel;
+        private System.Windows.Forms.Button spielLöschenButton;
+        private System.Windows.Forms.Button spielStartenButton;
     }
 }

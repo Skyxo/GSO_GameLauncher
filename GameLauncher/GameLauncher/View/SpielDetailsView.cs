@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameLauncher.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,12 @@ namespace GameLauncher.View
 {
     public partial class SpielDetailsView : Form
     {
+
+        private string SpielTitel
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Zeigt alle übergebenen Details eines Spiels an
@@ -27,6 +34,8 @@ namespace GameLauncher.View
         {
             InitializeComponent();
 
+            SpielTitel = titel;
+
             spielTitelLabel.Text = titel;
             installationsDatumLabel.Text = installationsDatum.ToLongTimeString();
             zuletztGespieltLabel.Text = (zuletztGespielt != null && zuletztGespielt.HasValue ? zuletztGespielt.Value.ToLongDateString() : "");
@@ -38,5 +47,20 @@ namespace GameLauncher.View
             this.AutoSize = true;
         }
 
+        private void spielLöschenButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Soll das Spiel wirklich aus der Übersicht entfernt werden?", "Spiel löschen", MessageBoxButtons.YesNoCancel);
+
+            if (result == DialogResult.Yes)
+            {
+                SpielVerwaltung.Instanz.SpielLöschen(SpielTitel);
+                MessageBox.Show("Das Spiel wurde aus der Übersicht entfernt");
+            }
+        }
+
+        private void spielStartenButton_Click(object sender, EventArgs e)
+        {
+            SpielVerwaltung.Instanz.SpielStarten(SpielTitel);
+        }
     }
 }

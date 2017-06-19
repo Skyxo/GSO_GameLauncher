@@ -128,6 +128,8 @@ namespace GameLauncher.View
                 g.DrawString(spielTitel, spielTitelFont, spielTitelBrush, titelX, titelY);
                 g.DrawRectangle(new Pen(Color.Gray, 1.4F), spielTitelRectangle);
 
+
+
                 DrawedButton drawedButton = new DrawedButton();
                 drawedButton.X = rectX;
                 drawedButton.Y = rectY;
@@ -213,6 +215,11 @@ namespace GameLauncher.View
                     {
                         spielDetailsView.Close();
                     }
+                    else if (result == DialogResult.OK)
+                    {
+                        PaintThis();
+                        spielDetailsView.Close();
+                    }
                     
 
                     break;
@@ -240,10 +247,7 @@ namespace GameLauncher.View
                 {
                     Cursor.Current = Cursors.Hand;
                 }
-                else
-                {
-                    Cursor.Current = Cursors.Default;
-                }
+                
             }
         }
 
