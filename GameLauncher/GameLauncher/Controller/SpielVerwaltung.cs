@@ -158,6 +158,8 @@ namespace GameLauncher.Controller
             Spiele s = spieleEntities.Spiele.Find(spiel.SpielID);
             s.ZuletztGespielt = DateTime.Now;
 
+            spieleEntities.SaveChanges();
+
             Process.Start(spiel.InstallationsPfad);
         }
 
