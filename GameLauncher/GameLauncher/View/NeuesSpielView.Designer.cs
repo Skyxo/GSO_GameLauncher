@@ -39,12 +39,12 @@
             this.uskTextBox = new System.Windows.Forms.TextBox();
             this.uskLabel = new System.Windows.Forms.Label();
             this.publisherLabel = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.durchsuchenGroupBox = new System.Windows.Forms.GroupBox();
             this.installationsPfadLabel = new System.Windows.Forms.Label();
             this.installationsPfadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.spielTitelGroupBox.SuspendLayout();
             this.spielMetaGroupBox.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.durchsuchenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
@@ -148,16 +148,16 @@
             this.publisherLabel.TabIndex = 6;
             this.publisherLabel.Text = "Publisher";
             // 
-            // groupBox2
+            // durchsuchenGroupBox
             // 
-            this.groupBox2.Controls.Add(this.installationsPfadLabel);
-            this.groupBox2.Controls.Add(this.durchsuchenButton);
-            this.groupBox2.Location = new System.Drawing.Point(13, 223);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(418, 46);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.durchsuchenGroupBox.Controls.Add(this.installationsPfadLabel);
+            this.durchsuchenGroupBox.Controls.Add(this.durchsuchenButton);
+            this.durchsuchenGroupBox.Location = new System.Drawing.Point(13, 223);
+            this.durchsuchenGroupBox.Name = "durchsuchenGroupBox";
+            this.durchsuchenGroupBox.Size = new System.Drawing.Size(418, 46);
+            this.durchsuchenGroupBox.TabIndex = 9;
+            this.durchsuchenGroupBox.TabStop = false;
+            this.durchsuchenGroupBox.Text = "Installationspfad";
             // 
             // installationsPfadLabel
             // 
@@ -177,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 307);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.durchsuchenGroupBox);
             this.Controls.Add(this.spielMetaGroupBox);
             this.Controls.Add(this.spielTitelGroupBox);
             this.Controls.Add(this.saveButton);
@@ -188,8 +188,8 @@
             this.spielTitelGroupBox.PerformLayout();
             this.spielMetaGroupBox.ResumeLayout(false);
             this.spielMetaGroupBox.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.durchsuchenGroupBox.ResumeLayout(false);
+            this.durchsuchenGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,7 +207,7 @@
         private System.Windows.Forms.Label publisherLabel;
         private System.Windows.Forms.TextBox uskTextBox;
         private System.Windows.Forms.Label uskLabel;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox durchsuchenGroupBox;
         private System.Windows.Forms.Label installationsPfadLabel;
         private System.Windows.Forms.OpenFileDialog installationsPfadOpenFileDialog;
     }
