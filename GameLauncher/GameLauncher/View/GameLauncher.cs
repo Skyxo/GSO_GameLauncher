@@ -16,29 +16,27 @@ namespace GameLauncher.View
     public partial class GameLauncher : Form
     {
 
-        private SpielVerwaltung SpielVerwaltung
-        {
-            get;
-            set;
-        }
-
+        /// <summary>
+        /// Liste der gezeichneten Buttons
+        /// </summary>
         private List<DrawedButton> DrawedButtons
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// GameLauncher Konstruktor
+        /// </summary>
         public GameLauncher()
         {
             InitializeComponent();
 
             this.ResizeRedraw = true;
-
-            SpielVerwaltung = new SpielVerwaltung();
+            
             DrawedButtons = new List<DrawedButton>();
         }
-
-        Graphics g = null;
+        
 
         /// <summary>
         /// Fenster malen
@@ -50,16 +48,19 @@ namespace GameLauncher.View
 
             base.OnPaint(e);
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-
-            g = e.Graphics;
-
+            
             PaintThis();
         }
 
+        /// <summary>
+        /// Programm zeichnen
+        /// </summary>
         private void PaintThis()
         {
+            Graphics g = this.CreateGraphics();
+
             DrawedButtons.Clear();
-            g.Clear(SystemColors.Control);
+            g.Clear(Color.White);
 
             float windowHeight = this.Size.Height;
             float windowWidth = this.Size.Width;
@@ -96,7 +97,7 @@ namespace GameLauncher.View
             int reihe = 0;
             int spalte = 0;
 
-            foreach (Spiele spiel in SpielVerwaltung.SpielListe)
+            foreach (Spiele spiel in SpielVerwaltung.Instanz.SpielListe)
             {
                 // Titel in neue Zeile, sobald die Spalte voll ist
                 if (spalte == 3)
@@ -143,6 +144,11 @@ namespace GameLauncher.View
             this.AutoScrollMinSize = new Size(0, randOben + reihe * (40 + abstand));
         }
 
+        /// <summary>
+        /// Konvertiert ein Float in ein Integer
+        /// </summary>
+        /// <param name="f">Float</param>
+        /// <returns>Konvertiertes Integer</returns>
         private int FloatToInt(float f)
         {
             return (int)Math.Round(f);
@@ -197,7 +203,7 @@ namespace GameLauncher.View
                     y <= button.Height + button.Y)
                 {
                     this.WindowState = FormWindowState.Minimized;
-                    SpielVerwaltung.SpielStarten(button.Spiel.Titel);
+                    SpielVerwaltung.Instanz.SpielStarten(button.Spiel.Titel);
                     break;
                 }
             }
@@ -218,20 +224,23 @@ namespace GameLauncher.View
                 if (x >= button.X &&
                     y >= button.Y &&
                     x <= button.Width + button.X &&
-                    y <= button.Height + button.Y)
+                    y <= button.Height + button.Y &&
+                    Cursor.Current != Cursors.Hand)
                 {
                     Cursor.Current = Cursors.Hand;
                 }
                 else
                 {
-                    if (Cursor.Current == Cursors.Hand)
-                    {
-                        Cursor.Current = Cursors.Default;
-                    }
+                    Cursor.Current = Cursors.Default;
                 }
             }
         }
 
+        /// <summary>
+        /// Dialog zum Hinzufügen eines neuen Spiels öfnnen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void neuesSpielButton_Click(object sender, EventArgs e)
         {
             NeuesSpielView neuesSpielView = new NeuesSpielView();

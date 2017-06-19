@@ -12,6 +12,22 @@ namespace GameLauncher.Controller
     {
 
         /// <summary>
+        /// [Singleton] Instanz der Spielverwaltung
+        /// </summary>
+        private static SpielVerwaltung __Instanz = new SpielVerwaltung();
+
+        /// <summary>
+        /// [Singleton] Instanz der Spielverwaltung
+        /// </summary>
+        public static SpielVerwaltung Instanz
+        {
+            get
+            {
+                return __Instanz;
+            }
+        }
+
+        /// <summary>
         /// Spiel
         /// </summary>
         public List<Spiele> SpielListe
@@ -23,7 +39,7 @@ namespace GameLauncher.Controller
         /// <summary>
         /// Laden aller Spieleinträge
         /// </summary>
-        public SpielVerwaltung()
+        private SpielVerwaltung()
         {
             SpielListe = new List<Spiele>();
 

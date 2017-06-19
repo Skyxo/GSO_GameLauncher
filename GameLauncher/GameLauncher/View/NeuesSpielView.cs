@@ -59,8 +59,7 @@ namespace GameLauncher.View
                 MessageBox.Show("Bitte eine gültige Zahl für das USK angeben.");
             }
 
-            SpielVerwaltung spielVerwaltung = new SpielVerwaltung();
-            spielVerwaltung.SpielHinzufügen(titel, installationsPfad, kategorie, publisher, usk);
+            SpielVerwaltung.Instanz.SpielHinzufügen(titel, installationsPfad, kategorie, publisher, usk);
 
             this.Close();
         }
