@@ -54,6 +54,7 @@ namespace GameLauncher.Controller
             SpieleEntities spieleEntities = new SpieleEntities();
 
             SpielListe.AddRange(from s in spieleEntities.Spiele
+                                orderby s.Titel ascending
                                 select s);
         }
 

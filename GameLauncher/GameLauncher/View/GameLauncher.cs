@@ -202,8 +202,19 @@ namespace GameLauncher.View
                     x <= button.Width + button.X &&
                     y <= button.Height + button.Y)
                 {
-                    this.WindowState = FormWindowState.Minimized;
-                    SpielVerwaltung.Instanz.SpielStarten(button.Spiel.Titel);
+                    //this.WindowState = FormWindowState.Minimized;
+                    //SpielVerwaltung.Instanz.SpielStarten(button.Spiel.Titel);
+
+                    SpielDetailsView spielDetailsView = new SpielDetailsView(button.Spiel.Titel, button.Spiel.InstallationsDatum, button.Spiel.ZuletztGespielt, button.Spiel.InstallationsPfad, button.Spiel.Kategorie, button.Spiel.Publisher, button.Spiel.USK);
+
+                    DialogResult result = spielDetailsView.ShowDialog(this);
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        spielDetailsView.Close();
+                    }
+                    
+
                     break;
                 }
             }

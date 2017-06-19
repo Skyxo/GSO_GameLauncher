@@ -23,13 +23,26 @@ namespace GameLauncher.View
 
         private void durchsuchenButton_Click(object sender, EventArgs e)
         {
+            string tempInstallationsPfad = installationsPfad;
+
             if (installationsPfadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                System.IO.StreamReader sr = new System.IO.StreamReader(installationsPfadOpenFileDialog.FileName);
                 installationsPfad = installationsPfadOpenFileDialog.FileName;
 
-                installationsPfadLabel.Text = installationsPfad;
-                sr.Close();
+                try
+                {
+                    Utils.Utils.PfadCheck(installationsPfad);
+                    Utils.Utils.MimeCheck(installationsPfad);
+
+                    installationsPfadLabel.Text = installationsPfad;
+                }
+                catch (ArgumentException ex)
+                {
+                    installationsPfad = tempInstallationsPfad;
+                    installationsPfadLabel.Text = (string.IsNullOrEmpty(tempInstallationsPfad) ? "Auf \"Durchsuchen...\" klicken" : tempInstallationsPfad);
+
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -57,6 +70,16 @@ namespace GameLauncher.View
             catch (Exception ex)
             {
                 MessageBox.Show("Bitte eine gültige Zahl für das USK angeben.");
+            }
+
+            try
+            {
+                Utils.Utils.PfadCheck(installationsPfad);
+                Utils.Utils.MimeCheck(installationsPfad);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             SpielVerwaltung.Instanz.SpielHinzufügen(titel, installationsPfad, kategorie, publisher, usk);

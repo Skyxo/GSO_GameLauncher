@@ -103,6 +103,12 @@
     <Compile Include="View\NeuesSpielView.Designer.cs">
       <DependentUpon>NeuesSpielView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SpielDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpielDetailsView.Designer.cs">
+      <DependentUpon>SpielDetailsView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\NeuesSpielView.resx">
       <DependentUpon>NeuesSpielView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SpielDetailsView.resx">
+      <DependentUpon>SpielDetailsView.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model\SpieleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

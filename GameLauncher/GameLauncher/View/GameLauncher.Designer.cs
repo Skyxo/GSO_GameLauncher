@@ -37,7 +37,7 @@
             this.neuesSpielButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.neuesSpielButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.neuesSpielButton.ForeColor = System.Drawing.Color.Gray;
-            this.neuesSpielButton.Location = new System.Drawing.Point(1202, 12);
+            this.neuesSpielButton.Location = new System.Drawing.Point(12, 12);
             this.neuesSpielButton.Name = "neuesSpielButton";
             this.neuesSpielButton.Size = new System.Drawing.Size(50, 50);
             this.neuesSpielButton.TabIndex = 0;
